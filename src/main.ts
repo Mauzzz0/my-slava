@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import express from 'express';
 
 import { logRoutes } from './bootstrap/log.routes';
+import { config } from './config';
 import { errorHandler } from './middlewares/error.handler';
 import { logMiddleware } from './middlewares/log.middleware';
 import { TaskRouter } from './modules/task/task.controller';
@@ -18,9 +19,8 @@ const bootstrap = () => {
 
   logRoutes(server);
 
-  const port = 2000;
-  server.listen(port, () => {
-    console.log(`Server is started on port ${port}...`);
+  server.listen(config.PORT, () => {
+    console.log(`Server is started on port ${config.PORT}...`);
   });
 };
 
