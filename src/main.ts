@@ -1,26 +1,22 @@
 import express from 'express';
 
-import { logRoutes } from './log.routes';
+import { logRoutes } from './bootstrap/log.routes';
+import { logMiddleware } from './middlewares/log.middleware';
+import { TaskRouter } from './modules/task/task.controller';
 
-const server = express();
-server.use(express.json());
+const bootstrap = () => {
+  const server = express();
+  server.use(express.json());
+  server.use(logMiddleware);
 
-const port = 2000;
+  server.use('/task', TaskRouter);
 
-const taskRouter = express.Router();
-const userRouter = express.Router();
+  logRoutes(server);
 
-taskRouter.get('/:id', (req, res) => {
-  res.send({ a: 10 });
-});
+  const port = 2000;
+  server.listen(port, () => {
+    console.log(`Server is started on port ${port}...`);
+  });
+};
 
-userRouter.get('/:id', (req, res) => {});
-
-server.use('/task', taskRouter);
-server.use('/user', userRouter);
-
-logRoutes(server);
-
-server.listen(port, () => {
-  console.log(`Server is started on port ${port}...`);
-});
+bootstrap();
