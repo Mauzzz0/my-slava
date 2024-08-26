@@ -6,18 +6,18 @@ import { CreateTaskDto } from './task.dto';
 import { TaskService } from './task.service';
 
 const TaskController = {
-  getOne(req: Request, res: Response) {
+  async getOne(req: Request, res: Response) {
     const params = validate(IdNumberDto, req.params);
 
-    const result = TaskService.getById(params.id);
+    const result = await TaskService.getById(params.id);
 
     res.json(result);
   },
 
-  create(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const body = validate(CreateTaskDto, req.body);
 
-    const result = TaskService.create(body);
+    const result = await TaskService.create(body);
 
     res.json(result);
   },
