@@ -2,9 +2,13 @@
   "name": "my-slava",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ./src/main.js"
+    "start": "ts-node src/main.ts"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
 }
