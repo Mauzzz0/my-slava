@@ -1,0 +1,10 @@
+{
+  "name": "my-slava",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node ./src/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
