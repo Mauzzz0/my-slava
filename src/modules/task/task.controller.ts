@@ -1,8 +1,13 @@
 import express, { Request, Response } from 'express';
 
+import { IdNumberDto } from '../../shared/id.number.dto';
+import { validate } from '../../validation';
+
 const TaskController = {
   getOne(req: Request, res: Response) {
-    res.send('sdfsdf');
+    const params = validate(IdNumberDto, req.params);
+
+    res.send(params);
   },
 };
 
